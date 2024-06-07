@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: auth-api-app
+    command: ./.docker/start.sh
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - db
+    networks:
+      - auth-api-network
+  db:
+    image: postgres:latest
+    container_name: auth-api-db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=auth-api
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - auth-api-network
+
+networks:
+  auth-api-network:
+    driver: bridge
+
+volumes:
+  pgdata:
