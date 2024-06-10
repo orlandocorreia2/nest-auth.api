@@ -3,9 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
-
+export async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Auth Api')
     .setDescription('The Auth API description')
@@ -22,6 +20,7 @@ async function bootstrap() {
       'KEY_AUTH',
     )
     .build();
+  const app = await NestFactory.create(AppModule);
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
   app.useGlobalPipes(new ValidationPipe());

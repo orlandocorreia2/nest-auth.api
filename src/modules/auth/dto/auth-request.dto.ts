@@ -12,4 +12,11 @@ export class AuthRequestDto {
     { message: 'Password too weak' },
   )
   password: string;
+
+  static create(data?: AuthRequestDto) {
+    const instance = new AuthRequestDto();
+    instance.email = data?.email;
+    instance.password = data?.password;
+    return instance;
+  }
 }

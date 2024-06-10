@@ -5,4 +5,10 @@ export class LogoutRequestDto {
   @ApiProperty()
   @IsJWT()
   authorization: string;
+
+  static create(data?: LogoutRequestDto) {
+    const instance = new LogoutRequestDto();
+    instance.authorization = data?.authorization;
+    return instance;
+  }
 }

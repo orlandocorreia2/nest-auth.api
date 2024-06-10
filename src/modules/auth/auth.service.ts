@@ -3,15 +3,15 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
+import { Repository } from 'typeorm';
 import { AuthRequestDto } from './dto/auth-request.dto';
 import { AuthResponseDto } from './dto/auth-response.dto';
 import { UsersService } from '../users/users.service';
-import { JwtService } from '@nestjs/jwt';
 import { compareSync as bcryptCompareSync } from 'bcrypt';
-import { ConfigService } from '@nestjs/config';
-import { InjectRepository } from '@nestjs/typeorm';
-import { AuthTokenEntity } from 'src/db/entities/auth-token.entity';
-import { Repository } from 'typeorm';
+import { AuthTokenEntity } from '../../db/entities/auth-token.entity';
 import { LogoutRequestDto } from './dto/logout-request.dto';
 
 @Injectable()

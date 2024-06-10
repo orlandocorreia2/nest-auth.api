@@ -39,4 +39,14 @@ export class CreateUserDto {
     message: `date_birth must be a valid date, Ex: ${new Date().toISOString().split('T')[0]}`,
   })
   date_birth: Date;
+
+  static create(data?: CreateUserDto) {
+    const instance = new CreateUserDto();
+    instance.name = data?.name;
+    instance.email = data?.email;
+    instance.password = data?.password;
+    instance.confirm_password = data?.confirm_password;
+    instance.date_birth = data?.date_birth;
+    return instance;
+  }
 }
