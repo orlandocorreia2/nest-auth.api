@@ -15,7 +15,7 @@ describe('UserEntity', () => {
 
   describe('create', () => {
     it('should be create successfully', () => {
-      //Act
+      // Act
       const userEntity = UserEntity.create({
         name: 'name',
         email: 'email',
@@ -23,13 +23,12 @@ describe('UserEntity', () => {
         confirm_password: 'password',
         date_birth: new Date(),
       });
-
-      //Asset
+      // Assert
       expect(userEntity.name).toBe('name');
     });
 
     it('should be create with date_birth error', () => {
-      //Asset
+      // Assert
       try {
         UserEntity.create({
           name: 'name',

@@ -28,6 +28,7 @@ describe('AuthBusiness', () => {
   });
 
   it('should be defined', () => {
+    // Assert
     expect(business).toBeDefined();
   });
 
@@ -38,7 +39,6 @@ describe('AuthBusiness', () => {
         email: 'email',
         password: 'password',
       });
-
       // Assert
       expect(result.token).toBe('token');
     });
@@ -48,7 +48,6 @@ describe('AuthBusiness', () => {
     it('should signOut successfuly', async () => {
       // Act
       await business.signOut({ authorization: 'authorization' });
-
       // Assert
       expect(service.signOut).toHaveBeenCalledTimes(1);
     });

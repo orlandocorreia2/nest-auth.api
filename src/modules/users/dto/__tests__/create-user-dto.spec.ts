@@ -23,7 +23,6 @@ describe('UserEntity', () => {
         confirm_password: 'confirm_password',
         date_birth,
       });
-
       //Assert
       expect(createUserDto.name).toBe('name');
       expect(createUserDto.email).toBe('email');

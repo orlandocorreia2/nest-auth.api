@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     @Inject('ITokenService') private readonly tokenService: ITokenService,
   ) {}
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  async canActivate(context: ExecutionContext | any): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
     if (!token) {

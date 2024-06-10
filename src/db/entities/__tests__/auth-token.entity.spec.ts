@@ -14,13 +14,12 @@ describe('AuthEntity', () => {
 
   describe('create', () => {
     it('should be create successfully', () => {
-      //Act
+      // Act
       const authTokenEntity = AuthTokenEntity.create({
         user_id: 'user_id',
         token: 'token',
       });
-
-      //Asset
+      // Assert
       expect(authTokenEntity.user_id).toBe('user_id');
     });
   });

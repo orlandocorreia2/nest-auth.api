@@ -34,6 +34,7 @@ describe('TokenService', () => {
   });
 
   it('should be defined', () => {
+    // Assert
     expect(service).toBeDefined();
     expect(repository).toBeDefined();
   });
@@ -41,7 +42,6 @@ describe('TokenService', () => {
   it('should find successfuly', async () => {
     // Act
     const result = await service.findByToken('token');
-
     // Assert
     expect(result.token).toBe('token');
     expect(repository.findOne).toHaveBeenCalledTimes(1);
@@ -50,7 +50,6 @@ describe('TokenService', () => {
   it('should throw an exception', () => {
     // Arrange
     jest.spyOn(repository, 'findOne').mockRejectedValueOnce(new Error());
-
     // Assert
     expect(service.findByToken('token')).rejects.toThrow(Error);
   });

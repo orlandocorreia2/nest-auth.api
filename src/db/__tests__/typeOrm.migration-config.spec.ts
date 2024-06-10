@@ -3,7 +3,7 @@ import config from '../typeOrm.migration-config';
 
 describe('DB', () => {
   it('should be defined', async () => {
-    //Assert
+    // Assert
     expect(config).toBeDefined();
     expect(config).toBeInstanceOf(DataSource);
   });

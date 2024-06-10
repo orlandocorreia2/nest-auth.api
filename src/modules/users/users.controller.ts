@@ -9,7 +9,7 @@ export class UsersController {
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     try {
-      return this.usersBusiness.create(createUserDto);
+      return await this.usersBusiness.create(createUserDto);
     } catch (error) {
       return error;
     }

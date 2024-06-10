@@ -1,15 +1,15 @@
 import { Test } from '@nestjs/testing';
-import { AuthModule } from '../auth.module';
+import { UsersModule } from '../users.module';
 
-describe('AuthModule', () => {
-  it('should be compile the module', async () => {
+describe('UsersModule', () => {
+  it('should be compile with error', async () => {
     try {
       // Act
       await Test.createTestingModule({
-        imports: [AuthModule],
+        imports: [UsersModule],
       }).compile();
     } catch (error) {
-      // Assert
+      //Assert
       expect(error).toBeInstanceOf(Error);
     }
   });

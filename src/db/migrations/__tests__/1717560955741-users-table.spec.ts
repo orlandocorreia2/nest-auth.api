@@ -1,36 +1,35 @@
-import { Table, TableForeignKey } from 'typeorm';
-import { AuthTokensTable1717644471380 as AuthTokensTable } from '../1717644471380-auth_tokens-table';
+import { Table } from 'typeorm';
+import { UsersTable1717560955741 as UsersTable } from '../1717560955741-users-table';
 
 describe('Migrations:UsersTable', () => {
-  let authTokensTable: any;
+  let usersTable: any;
   let queryRunner: any;
 
   beforeEach(() => {
-    authTokensTable = new AuthTokensTable();
+    usersTable = new UsersTable();
     queryRunner = {
       query: jest.fn(),
       createTable: jest.fn(),
-      createForeignKey: jest.fn(),
       dropTable: jest.fn(),
     };
   });
 
   it('should be defined', async () => {
-    expect(authTokensTable).toBeDefined();
+    // Assert
+    expect(usersTable).toBeDefined();
   });
 
   describe('up', () => {
     it('should be create table', async () => {
       // Act
-      await authTokensTable.up(queryRunner);
-
+      await usersTable.up(queryRunner);
       // Assert
       expect(queryRunner.query).toHaveBeenCalledWith(
         `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`,
       );
       expect(queryRunner.createTable).toHaveBeenCalledWith(
         new Table({
-          name: 'auth_tokens',
+          name: 'users',
           columns: [
             {
               name: 'id',
@@ -38,24 +37,23 @@ describe('Migrations:UsersTable', () => {
               isPrimary: true,
             },
             {
-              name: 'user_id',
-              type: 'uuid',
+              name: 'name',
+              type: 'varchar',
             },
             {
-              name: 'token',
+              name: 'email',
               type: 'varchar',
               isUnique: true,
             },
+            {
+              name: 'password',
+              type: 'varchar',
+            },
+            {
+              name: 'date_birth',
+              type: 'timestamp',
+            },
           ],
-        }),
-      );
-      expect(queryRunner.createForeignKey).toHaveBeenCalledWith(
-        'auth_tokens',
-        new TableForeignKey({
-          columnNames: ['user_id'],
-          referencedColumnNames: ['id'],
-          referencedTableName: 'users',
-          onDelete: 'CASCADE',
         }),
       );
     });
@@ -64,10 +62,9 @@ describe('Migrations:UsersTable', () => {
   describe('down', () => {
     it('should be drop table', async () => {
       // Act
-      await authTokensTable.down(queryRunner);
-
+      await usersTable.down(queryRunner);
       // Assert
-      expect(queryRunner.dropTable).toHaveBeenCalledWith(`auth_tokens`);
+      expect(queryRunner.dropTable).toHaveBeenCalledWith(`users`);
     });
   });
 });
